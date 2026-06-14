@@ -1,9 +1,30 @@
 import streamlit as st
 import numpy as np
+import os
+import requests
+from load_model import get_model
 from PIL import Image
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import Dense
+
+MODEL_URL = "https://huggingface.co/asadalam/brain_mri_3dresnet_final.keras"
+MODEL_PATH = "brain_mri_3dresnet_final.keras"
+
+def get_model():
+    if not os.path.exists(MODEL_PATH):
+        print("Downloading model...")
+
+        response = requests.get(MODEL_URL)
+
+        with open(MODEL_PATH, "wb") as f:
+            f.write(response.content)
+
+        print("Download complete.")
+
+    return load_model(MODEL_PATH)
+
+
 
 # ===== FIX FOR quantization_config ERROR =====
 
@@ -20,14 +41,11 @@ Dense.from_config = fixed_from_config
 
 @st.cache_resource
 def load_my_model():
-    return load_model(
-        "final_alzheimer_classifier.keras",
-        compile=False,
-        safe_mode=False
-    )
+    return get_model()
 
 model = load_my_model()
 
+st.success("Model Loaded Successfully!")
 # ===== 4 CLASS NAMES =====
 
 class_names = [
