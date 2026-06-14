@@ -32,8 +32,14 @@ def get_model():
 
     print("Current Files:", os.listdir("."))
 
-    return load_model(MODEL_PATH)
-
+    try:
+        model = load_model(MODEL_PATH)
+        return model
+    except Exception as e:
+        print("REAL ERROR:")
+        print(type(e))
+        print(str(e))
+        raise
 
 # ===== FIX FOR quantization_config ERROR =====
 
