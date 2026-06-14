@@ -8,7 +8,7 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import Dense
 
-MODEL_URL = "https://huggingface.co/asadalam/brain_mri_3dresnet_final-bucket"
+MODEL_URL = "https://huggingface.co/asadalam/brain-mri-model/resolve/main/brain_mri_3dresnet_final.keras"
 MODEL_PATH = "brain_mri_3dresnet_final.keras"
 
 def get_model():
