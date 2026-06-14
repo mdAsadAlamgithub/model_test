@@ -17,13 +17,22 @@ def get_model():
 
         response = requests.get(MODEL_URL)
 
+        print("Status Code:", response.status_code)
+
         with open(MODEL_PATH, "wb") as f:
             f.write(response.content)
 
         print("Download complete.")
 
-    return load_model(MODEL_PATH)
+    print("Model Path:", MODEL_PATH)
+    print("Exists:", os.path.exists(MODEL_PATH))
 
+    if os.path.exists(MODEL_PATH):
+        print("File Size:", os.path.getsize(MODEL_PATH))
+
+    print("Current Files:", os.listdir("."))
+
+    return load_model(MODEL_PATH)
 
 
 # ===== FIX FOR quantization_config ERROR =====
