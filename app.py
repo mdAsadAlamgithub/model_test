@@ -8,38 +8,42 @@ import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import Dense
 
-MODEL_URL = "https://huggingface.co/asadalam/brain-mri-model/resolve/main/brain_mri_3dresnet_final.keras"
-MODEL_PATH = "brain_mri_3dresnet_final.keras"
+MODEL_PATH = "mobilenetv2_model.keras"
+#MODEL_URL = "https://huggingface.co/asadalam/brain-mri-model/resolve/main/brain_mri_3dresnet_final.keras"
+#MODEL_PATH = "brain_mri_3dresnet_final.keras"
 
 def get_model():
-    if not os.path.exists(MODEL_PATH):
-        print("Downloading model...")
+    return load_model(MODEL_PATH)
 
-        response = requests.get(MODEL_URL)
+#def get_model():
+ #   if not os.path.exists(MODEL_PATH):
+  #      print("Downloading model...")
 
-        print("Status Code:", response.status_code)
+#        response = requests.get(MODEL_URL)
 
-        with open(MODEL_PATH, "wb") as f:
-            f.write(response.content)
+ #       print("Status Code:", response.status_code)
 
-        print("Download complete.")
+  #      with open(MODEL_PATH, "wb") as f:
+   #         f.write(response.content)
 
-    print("Model Path:", MODEL_PATH)
-    print("Exists:", os.path.exists(MODEL_PATH))
+    #    print("Download complete.")
 
-    if os.path.exists(MODEL_PATH):
-        print("File Size:", os.path.getsize(MODEL_PATH))
+    #print("Model Path:", MODEL_PATH)
+    #print("Exists:", os.path.exists(MODEL_PATH))
 
-    print("Current Files:", os.listdir("."))
+   # if os.path.exists(MODEL_PATH):
+    #    print("File Size:", os.path.getsize(MODEL_PATH))
 
-    try:
-        model = load_model(MODEL_PATH)
-        return model
-    except Exception as e:
-        print("REAL ERROR:")
-        print(type(e))
-        print(str(e))
-        raise
+    #print("Current Files:", os.listdir("."))
+
+    #try:
+     #   model = load_model(MODEL_PATH)
+      #  return model
+    #except Exception as e:
+     #   print("REAL ERROR:")
+      #  print(type(e))
+       # print(str(e))
+        #raise
 
 # ===== FIX FOR quantization_config ERROR =====
 
