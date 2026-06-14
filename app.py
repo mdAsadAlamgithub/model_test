@@ -5,7 +5,7 @@ import requests
 from load_model import get_model
 from PIL import Image
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+#from tensorflow.keras.models import load_model
 from tensorflow.keras.layers import Dense
 
 MODEL_URL = "https://huggingface.co/asadalam/brain_mri_3dresnet_final.keras"
